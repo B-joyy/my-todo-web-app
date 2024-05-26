@@ -18,7 +18,11 @@ todos = functions.get_todos()
 
 st.title("My Todo App")
 st.subheader("This is my minimalist todo app.")
-st.write("This app is to increase your productivity.")
+st.write("This app is to increase your <b>productivity.</b>",
+         unsafe_allow_html=True)
+
+st.text_input(label="Enter todo", placeholder="Add new todo...",
+              on_change=add_todo, key="new_todo")
 
 for todo in todos:
     checked = st.checkbox(todo, key=todo)
@@ -27,6 +31,3 @@ for todo in todos:
         functions.write_todos(todos)
         del st.session_state[todo]
         st.rerun()
-
-st.text_input(label="Enter todo", placeholder="Add new todo...",
-              on_change=add_todo, key="new_todo")
